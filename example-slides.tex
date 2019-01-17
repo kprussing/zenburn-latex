@@ -1,0 +1,43 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usecolortheme[dark]{zenburn}
+
+\title{An example presentation}
+\author{Keith F. Prussing, Ph.D.}
+\date{\today}
+\usepackage{mwe}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+    \frametitle{A first frame}
+    \blindtext
+\end{frame}
+
+\begin{frame}
+    \frametitle{An image}
+    \begin{figure}
+        \includegraphics[height=0.8\textheight]{example-image-golden}
+        \caption{Inclusion of an example image}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{lstlisting}[language=Fortran]
+program hello
+    ! A simple example program
+    use, intrinsic :: iso_fortran_env, only: output_unit, &
+                                             input_unit
+    implicit none
+    character(len=1024) :: who
+    write(output_unit, *) "Who is this?"
+    read(input_unit, *) who
+    write(output_unit, *) "Hello ", trim(who)
+end program hello
+    \end{lstlisting}
+\end{frame}
+\end{document}

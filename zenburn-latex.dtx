@@ -1,0 +1,562 @@
+% \iffalse meta-comment
+%
+% Copyright (c) 2019 by Keith F. Prussing <kprussing74@gmail.com>
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, either version 1.3c of this license
+% or (at your option) any later version.  The latest version of this
+% license is in
+%
+%     http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+%
+% This work has the LPPL maintenance status `maintained'.
+%
+% The Current Maintainer of this work is Keith F. Prussing.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{\jobname.dtx}
+%</driver>
+%<common>\NeedsTeXFormat{LaTeX2e}[2003/12/01]
+%<style>\ProvidesPackage{zenburn}
+%<beamercolor>\ProvidesPackage{beamercolorthemezenburn}
+%<*common>
+    [2019/01/14 v1.0 Zenburn color themes]
+%</common>
+%
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage{zenburn}
+\EnableCrossrefs{}
+\CodelineIndex{}
+\RecordChanges{}
+\usepackage{hologo}
+\lstset{%
+    language=[08]Fortran,
+    style=zenburn,
+    showspaces=false,
+    framerule=0pt,
+    stepnumber=2,
+    numbers=left,
+    numbersep=5pt,
+}
+\usepackage[columns=1]{idxlayout}
+\usepackage[style=ieee]{biblatex}
+\usepackage{cleveref}
+\addbibresource{references.bib}
+\begin{document}
+    \DocInput{\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+%  {Upper-case \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits     \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+% \changes{v1.0}{2019/01/14}{Initial version}
+% \GetFileInfo{\jobname.dtx}
+%
+%^^A Package macros
+% \DoNotIndex{\begin, \end, \newenvironment, \newcommand, \renewcommand}
+% \DoNotIndex{\CurrentOption, \DeclareOption, \ExecuteOptions}
+% \DoNotIndex{\PackageError, \PackageWarning, \PassOptionsToPackage}
+% \DoNotIndex{\ProcessOptions, \RequirePackage, \relax}
+%^^A Other package macros
+% \DoNotIndex{\BeforeBeginEnvironment, \AfterEndEnvironment}
+% \DoNotIndex{\color, \colorlet, \definecolor, \nopagecolor}
+% \DoNotIndex{\lstdefinestyle, \lstset}
+% \DoNotIndex{\iftoggle, \newtoggle, \togglefalse, \toggletrue}
+%^^A Font macros
+% \DoNotIndex{\bfseries, \itshape, \ttfamily, \small, \tiny}
+%^^A Beamer macros
+% \DoNotIndex{\DeclareOptionBeamer, \ExecuteOptionsBeamer}
+% \DoNotIndex{\ProcessOptionsBeamer, \setbeamercolor, \usebeamercolor}
+% \DoNotIndex{\mode}
+%
+% \title{Zenburn \LaTeX{} styles \thanks{This document
+% corresponds to \textsf{\jobname}~\fileversion, dated~\filedate.}}
+%
+% \author{Keith F. Prussing \\ \texttt{kprussing74@gmail.com}}
+%
+% \maketitle
+%
+% \begin{abstract}
+% An adaptation of the Zenburn color theme for vim for use in \LaTeX{}.
+% \end{abstract}
+%
+% \section{Introduction}
+%
+% This package is a translation of the Zenburn color scheme for
+% Vim~\cite{jnurmine_zenburn_2019} to be used within a \LaTeX{}
+% document.  It defines the base colors, provides a style for use with
+% \textsf{listings}, and a color theme for \textsf{beamer}.
+%
+% The package not only defines the true Zenburn dark theme, but it also
+% provides a light theme derived from reversing the foreground and
+% background of the normal text.  The colors are adjusted to ensure the
+% contrast is sufficient to be legible.  Only the color needed by
+% \textsf{listings} are defined with a ``dark'' and a ``light'' version.
+% A subset of the colors in the full Zenburn theme have been defined
+% as \textsf{xcolor} |\color|s.  These are listed in~\cref{sec:colors}.
+% For convenience, the theme colors are also mapped to colors with the
+% spaces replaced by hyphens.
+%
+% \DescribeMacro{zenburn dark style}
+% \DescribeMacro{zenburn light style}
+% \DescribeMacro{zenburn}
+% A dark and a light |style| are provided for use with |\lstset| and
+% family.  These styles set the colors and the font families for the
+% language.  The style appropriate style is mapped to the |zenburn|
+% style as well.
+%
+% \DescribeEnv{zenburn dark code block}
+% \DescribeEnv{zenburn light code block}
+% \DescribeEnv{code block}
+% This package also provides environments to place a |lstlisting|
+% environment in a |tcolorbox|.  This works around the fact that the
+% frames defined by \textsf{listings} do not always fill the background.
+% The rationale is: It is better to let a package that is good at
+% working with frames handle frames.  Unlike the colors and styles, the
+% generic environment provided does \emph{not} use the |zenburn| token.
+% This is because you will most likely simply want to use a code block
+% if you are loading this package.  As an aide to writing code snippets,
+% this package wraps the |lstlisting| environment in a default
+% |code block| block environment.
+%
+% The \textsf{beamer} color theme takes a reverse approach.  The default
+% slide theme is dark text on a light background with the default dark
+% code style.  The ``dark'' theme is the reverse.  The rationale is you
+% will most likely want the code snippets in the proper Zenburn color
+% scheme as opposed to the light version.  The theme sets the palettes
+% and relies on the other themes to define the rest of the presentation.
+%
+% \section{Usage}
+%
+% To install the package, simply run the provided |zenburn-latex.ins|
+% file through your preferred \LaTeX{}.  Then, copy the resultant |.sty|
+% files to a location where \LaTeX{} can find them.  To generate the
+% documentation, run this file (|zenburn-latex.dtx|) through
+% \hologo{pdfLaTeX} twice.  The second time is only to make sure the
+% references and index are typeset correctly.  Using the theme or
+% package is simply a matter of adding |\usepackage{zenburn}| or
+% |\usecolortheme{zenburn}| to your preamble.
+%
+% The better way to build the files is to simply use \textsf{SCons} with
+% the provided |SConstruct|.
+%
+% \section{Example usage}
+%
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+program hello
+    ! A simple example program in a forced code block
+    use, intrinsic :: iso_fortran_env, only: output_unit
+    implicit none
+    write(output_unit, *) "Hello world"
+end program hello
+\end{lstlisting}
+
+\begin{zenburn dark code block}
+\begin{lstlisting}
+program hello
+    ! A simple example program in a dark code block
+    use, intrinsic :: iso_fortran_env, only: output_unit
+    implicit none
+    write(output_unit, *) "Hello world"
+end program hello
+\end{lstlisting}
+\end{zenburn dark code block}
+
+\begin{zenburn light code block}
+\begin{lstlisting}
+program hello
+    ! A simple example program in a light code block
+    use, intrinsic :: iso_fortran_env, only: output_unit
+    implicit none
+    write(output_unit, *) "Hello world"
+end program hello
+\end{lstlisting}
+\end{zenburn light code block}
+
+\begin{code block}
+\begin{lstlisting}
+program hello
+    ! A simple example program in a default code block
+    use, intrinsic :: iso_fortran_env, only: output_unit
+    implicit none
+    write(output_unit, *) "Hello world"
+end program hello
+\end{lstlisting}
+\end{code block}
+
+%^^A The following should stop with an error about nested code blocks.
+%^^A\begin{code block}
+%^^A\begin{zenburn dark code block}
+%^^A\begin{lstlisting}
+%^^Aprogram hello
+%^^A    ! A simple example program in a nested code block
+%^^A    use, intrinsic :: iso_fortran_env, only: output_unit
+%^^A    implicit none
+%^^A    write(output_unit, *) "Hello world"
+%^^Aend program hello
+%^^A\end{lstlisting}
+%^^A\end{zenburn dark code block}
+%^^A\end{code block}
+% \iffalse
+%</example>
+% \fi
+%
+% \StopEventually{
+% \printbibliography[]
+% \PrintChanges{}
+% \PrintIndex{}
+%}
+%
+% \section{Implementation}
+%
+% \subsection{Style}
+%
+% The style file defines the colors and defines a listing style.
+%
+% \subsubsection{Color definitions\label{sec:colors}}
+%
+% \iffalse
+%<*style>
+% \fi
+% We begin by defining the colors in the theme.  Each color is a
+% descriptive name prefixed with |zenburn |.  Note, we use spaces in the
+% ``true'' color names.
+%    \begin{macrocode}
+\RequirePackage{xcolor}
+\definecolor{zenburn foreground}        {HTML}{DCDCCC}
+\definecolor{zenburn background}        {HTML}{3F3F3F}
+\definecolor{zenburn character}         {HTML}{DCA3A3}
+\definecolor{zenburn conditional}       {HTML}{F0DFAF}
+\definecolor{zenburn comment}           {HTML}{7F9F7F}
+\definecolor{zenburn debug}             {HTML}{BCA3A3}
+\definecolor{zenburn delimiter}         {HTML}{8F8F8F}
+\definecolor{zenburn error message}     {HTML}{80d4AA}
+\definecolor{zenburn exception}         {HTML}{C3BF9F}
+\definecolor{zenburn keyword}           {HTML}{F0DFAF}
+\definecolor{zenburn line number}       {HTML}{9FAFAF}
+\definecolor{zenburn pmenu}             {HTML}{242424}
+\definecolor{zenburn number}            {HTML}{8CD0D3}
+\definecolor{zenburn special char}      {HTML}{DCA3a3}
+\definecolor{zenburn special comment}   {HTML}{82A282}
+\definecolor{zenburn special key}       {HTML}{9ECE9E}
+\definecolor{zenburn statement}         {HTML}{E3CEAB}
+\definecolor{zenburn string}            {HTML}{CC9393}
+%    \end{macrocode}
+%
+% Now we define the color mappings for the dark and light color schemes.
+% The dark color scheme is easy.  We just map back to the proper colors.
+%    \begin{macrocode}
+\colorlet{zenburn dark foreground}  {zenburn foreground}
+\colorlet{zenburn dark background}  {zenburn background}
+\colorlet{zenburn dark comment}     {zenburn comment}
+\colorlet{zenburn dark keyword}     {zenburn keyword}
+\colorlet{zenburn dark line number} {zenburn line number}
+\colorlet{zenburn dark string}      {zenburn string}
+%    \end{macrocode}
+%
+% The light color scheme takes a bit more work.  We start by reversing
+% the normal text and lightening the background.  After that, we have to
+% go through some trial and error to find colors that keep the feel of
+% the dark theme and have enough contrast to be legible.
+%    \begin{macrocode}
+\colorlet{zenburn light foreground} {zenburn background}
+\colorlet{zenburn light background} {zenburn foreground!30!white}
+\colorlet{zenburn light comment}    {zenburn comment}
+\colorlet{zenburn light keyword}    {zenburn keyword!70!black} %^^A or statement
+\colorlet{zenburn light line number}{zenburn line number}
+\colorlet{zenburn light string}     {zenburn string}
+%    \end{macrocode}
+%
+% \iffalse
+%</style>
+% \fi
+%
+% \subsubsection{\textsf{Listing} styles}
+%
+% \iffalse
+%<*style>
+% \fi
+% \begin{macro}{zenburn dark style}
+% Next, we map our defined colors to the \textsf{listings} style.  We
+% define both a light and dark style along with the remaining
+% properties.
+%    \begin{macrocode}
+\RequirePackage{listings}
+\lstdefinestyle{zenburn dark style}{%
+    basicstyle=\small\ttfamily\color{zenburn dark foreground},
+    keywordstyle=\bfseries\color{zenburn dark keyword},
+    commentstyle=\itshape\color{zenburn dark comment},
+    stringstyle=\color{zenburn dark string},
+    showstringspaces=false,
+    numberstyle=\tiny\color{zenburn dark line number},
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{zenburn dark style}
+%    \begin{macrocode}
+\RequirePackage{listings}
+\lstdefinestyle{zenburn light style}{%
+    basicstyle=\small\ttfamily\color{zenburn light foreground},
+    keywordstyle=\bfseries\color{zenburn light keyword},
+    commentstyle=\itshape\color{zenburn light comment},
+    stringstyle=\color{zenburn light string},
+    showstringspaces=false,
+    numberstyle=\tiny\color{zenburn light line number},
+}
+%    \end{macrocode}
+% \end{macro}
+% \iffalse
+%</style>
+% \fi
+%
+% \subsubsection{Code blocks}
+%
+% \iffalse
+%<*style>
+% \fi
+%
+% Now we define a color box in which to place code.  The logic is that
+% the |lstlisting| background frame is bad.  It is better to let a
+% package that can handle frames and boxes do the real work.
+% \begin{environment}{zenburn dark code block}
+%    \begin{macrocode}
+\RequirePackage{tcolorbox}
+\newenvironment{zenburn dark code block}
+{%
+    \iftoggle{code block toggle}{%
+        \PackageError{zenburn}{Found nested |code block|}
+        {You cannot nest |code block|s}
+    }{%
+        \toggletrue{code block toggle}
+    }
+    \begin{tcolorbox}[colback=zenburn dark background,
+                      colframe=zenburn dark background,
+                      center]
+    \lstset{style=zenburn dark style}
+}{%
+    \togglefalse{code block toggle}
+    \end{tcolorbox}
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \begin{environment}{zenburn light code block}
+%    \begin{macrocode}
+\newenvironment{zenburn light code block}
+{%
+    \iftoggle{code block toggle}{%
+        \PackageError{zenburn}{Found nested |code block|}
+        {You cannot nest |code block|s}
+    }{%
+        \toggletrue{code block toggle}
+    }
+    \begin{tcolorbox}[colback=zenburn light background,
+                      colframe=zenburn light background,
+                      center]
+    \lstset{style=zenburn light style}
+}{%
+    \togglefalse{code block toggle}
+    \end{tcolorbox}
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \DescribeMacro{forced code block toggle}
+% As a final step, we force a bare |lstlisting| environment into a code
+% block.  This ensures the code is legible.  However, we do not want to
+% override a user set code block.  For this, we need a pair of
+% |\toggle|s.  The first is toggled by a user defined code block.  The
+% second is used by the forced code block.
+%    \begin{macrocode}
+\newtoggle{code block toggle}
+\newtoggle{forced code block toggle}
+\RequirePackage{etoolbox}
+\BeforeBeginEnvironment{lstlisting}
+{%
+    \iftoggle{code block toggle}{}{%
+        \begin{code block}%
+        \toggletrue{forced code block toggle}
+    }%
+}
+\AfterEndEnvironment{lstlisting}
+{%
+    \iftoggle{forced code block toggle}{%
+        \end{code block}%
+    }{}
+    \togglefalse{forced code block toggle}
+}
+%    \end{macrocode}
+% \iffalse
+%</style>
+% \fi
+%
+% \subsubsection{Options}
+%
+% \iffalse
+%<*style>
+% \fi
+% \DescribeMacro{\zenburn@lststyle}
+% \begin{macro}{\zenburn@theme}
+% Now we define the options to to toggle between the dark and light
+% themes.  To simplify generic code, we create a macro that is set by
+% the option.  Note the trailing space in the definition.  This is
+% required so that it expands correctly when used in the preamble.  We
+% also define the a macro for use with |lstset| because it wants to
+% remove the spaces and the main macro forces a space.  Note the lack of
+% spaces in the definition.
+%    \begin{macrocode}
+\newcommand{\zenburn@theme}[0]{dark }
+\newcommand{\zenburn@lststyle}[0]{zenburndarkstyle}
+\DeclareOption{dark}{%
+    \renewcommand{\zenburn@theme}[0]{dark }
+    \renewcommand{\zenburn@lststyle}[0]{zenburndarkstyle}
+}
+\DeclareOption{light}{%
+    \renewcommand{\zenburn@theme}[0]{light }
+    \renewcommand{\zenburn@lststyle}[0]{zenburnlightstyle}
+}
+\ExecuteOptions{dark}
+\DeclareOption*{\PackageWarning{zenburn}{Unknown `\CurrentOption'}}
+\ProcessOptions\relax
+%    \end{macrocode}
+% \end{macro}
+%
+% \DescribeMacro{zenburn-foreground}
+% \DescribeMacro{zenburn-background}
+% \DescribeMacro{zenburn-comment}
+% \DescribeMacro{zenburn-keyword}
+% \DescribeMacro{zenburn-line-number}
+% \DescribeMacro{zenburn-string}
+% The last step is to define generic versions of the colors, style, and
+% code block.  The colors map to the theme colors using the appropriate
+% name but with the spaces replaced with hyphens.  We only define the
+% theme colors that are actually used (and therefore toggled) in the
+% theme.  To use a specific color, use the original name defined
+% in~\cref{sec:colors}.
+%    \begin{macrocode}
+\colorlet{zenburn-foreground}       {zenburn \zenburn@theme foreground}
+\colorlet{zenburn-background}       {zenburn \zenburn@theme background}
+\colorlet{zenburn-comment}          {zenburn \zenburn@theme comment}
+\colorlet{zenburn-keyword}          {zenburn \zenburn@theme keyword}
+\colorlet{zenburn-line-number}      {zenburn \zenburn@theme line number}
+\colorlet{zenburn-string}           {zenburn \zenburn@theme string}
+%    \end{macrocode}
+%
+% \begin{macro}{zenburn}
+% Next, we create a generic style derived from the option set when
+% loading the class.
+%    \begin{macrocode}
+\lstdefinestyle{zenburn}{style=\zenburn@lststyle}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{environment}{code block}
+% And finally, we define a generic code block.
+%    \begin{macrocode}
+\newenvironment{code block}
+{%
+    \begin{zenburn \zenburn@theme code block}%
+}{%
+    \end{zenburn \zenburn@theme code block}
+}
+%    \end{macrocode}
+% \end{environment}
+%
+% \iffalse
+%</style>
+% \fi
+
+% \subsection{Presentation color theme}
+%
+% \iffalse
+%<*beamercolor>
+% \fi
+% \begin{macro}{zenburn beamer light}
+% We need a macro to flag the theme.  We cannot simply set the colors in
+% the \textsf{beamer} option processing because \textsf{zenburn} will
+% not be loaded yet.  We only need a flag because we have either a light
+% or dark theme.
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+\newtoggle{zenburn beamer light}
+%    \end{macrocode}
+% \end{macro}
+%
+% Next, we define the options and process them.
+%    \begin{macrocode}
+\DeclareOptionBeamer{light}{%
+    \PassOptionsToPackage{dark}{zenburn}
+    \toggletrue{zenburn beamer light}
+}
+\DeclareOptionBeamer{dark}{%
+    \PassOptionsToPackage{light}{zenburn}
+    \togglefalse{zenburn beamer light}
+}
+\ExecuteOptionsBeamer{light}
+\DeclareOptionBeamer*{\PackageWarning{beamercolorthemezenburn}%
+                      {Unknown `\CurrentOption'}}
+\ProcessOptionsBeamer\relax
+%    \end{macrocode}
+%
+% And we finish by loading the style and defining the colors.  The color
+% palette will be used to set the major components of the presentation
+% to give it a consistent feel.
+%    \begin{macrocode}
+\RequirePackage{zenburn}
+\mode<presentation>
+\iftoggle{zenburn beamer light}{%
+    \setbeamercolor*{normal text}       {fg=zenburn light foreground,%
+                                         bg=zenburn light background}
+    \setbeamercolor*{structure}         {fg=zenburn background!50!brown}
+    \setbeamercolor*{palette primary}   {fg=zenburn light foreground!25!brown}
+    \setbeamercolor*{palette secondary} {fg=zenburn keyword}
+    \setbeamercolor*{palette tertiary}  {fg=zenburn character}
+    \setbeamercolor*{palette quaternary}{fg=zenburn light foreground}
+}{%
+    \PackageWarning{beamercolorthemezenburn}%
+                   {`\CurrentOption' is experimental}
+    \setbeamercolor*{normal text}       {fg=zenburn dark foreground,%
+                                         bg=zenburn dark background}
+    \setbeamercolor*{structure}         {fg=zenburn keyword}
+    \setbeamercolor*{palette primary}   {fg=zenburn exception}
+    \setbeamercolor*{palette secondary} {fg=zenburn comment}
+    \setbeamercolor*{palette tertiary}  {fg=zenburn special char}
+    \setbeamercolor*{palette quaternary}{fg=zenburn dark foreground}
+}
+\mode<all>
+%    \end{macrocode}
+%
+% \iffalse
+%</beamercolor>
+% \fi
+%
+% \Finale{}
+\endinput
