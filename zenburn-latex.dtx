@@ -257,6 +257,7 @@ end program hello
 \definecolor{zenburn comment}           {HTML}{7F9F7F}
 \definecolor{zenburn debug}             {HTML}{BCA3A3}
 \definecolor{zenburn delimiter}         {HTML}{8F8F8F}
+\definecolor{zenburn diff add}          {HTML}{709080}
 \definecolor{zenburn error message}     {HTML}{80d4AA}
 \definecolor{zenburn exception}         {HTML}{C3BF9F}
 \definecolor{zenburn keyword}           {HTML}{F0DFAF}
@@ -535,10 +536,10 @@ end program hello
 \iftoggle{zenburn beamer light}{%
     \setbeamercolor*{normal text}       {fg=zenburn light foreground,%
                                          bg=zenburn light background}
-    \setbeamercolor*{structure}         {fg=zenburn background!50!brown}
+    \setbeamercolor*{structure}         {fg=zenburn background!75!brown}
     \setbeamercolor*{palette primary}   {fg=zenburn light foreground!25!brown}
     \setbeamercolor*{palette secondary} {fg=zenburn keyword}
-    \setbeamercolor*{palette tertiary}  {fg=zenburn character}
+    \setbeamercolor*{palette tertiary}  {fg=zenburn diff add}
     \setbeamercolor*{palette quaternary}{fg=zenburn light foreground}
 }{%
     \PackageWarning{beamercolorthemezenburn}%
