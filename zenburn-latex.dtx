@@ -346,10 +346,13 @@ end program hello
 %
 % Now we define a color box in which to place code.  The logic is that
 % the |lstlisting| background frame is bad.  It is better to let a
-% package that can handle frames and boxes do the real work.
+% package that can handle frames and boxes do the real work.  However,
+% we have to account for potentially long listings by setting the boxes
+% to |breakable|.
 % \begin{environment}{zenburn dark code block}
 %    \begin{macrocode}
 \RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
 \newenvironment{zenburn dark code block}
 {%
     \iftoggle{code block toggle}{%
@@ -360,7 +363,9 @@ end program hello
     }
     \begin{tcolorbox}[colback=zenburn dark background,
                       colframe=zenburn dark background,
-                      center]
+                      colupper=zenburn dark foreground,
+                      center,
+                      breakable]
     \lstset{style=zenburn dark style}
 }{%
     \togglefalse{code block toggle}
@@ -381,7 +386,9 @@ end program hello
     }
     \begin{tcolorbox}[colback=zenburn light background,
                       colframe=zenburn light background,
-                      center]
+                      colupper=zenburn light foreground,
+                      center,
+                      breakable]
     \lstset{style=zenburn light style}
 }{%
     \togglefalse{code block toggle}
