@@ -404,15 +404,15 @@ end program hello
 {%
     \iftoggle{code block toggle}{}{%
         \begin{code block}%
-        \toggletrue{forced code block toggle}
+        \toggletrue{forced code block toggle}%
     }%
 }
 \AfterEndEnvironment{lstlisting}
 {%
     \iftoggle{forced code block toggle}{%
         \end{code block}%
-    }{}
-    \togglefalse{forced code block toggle}
+    }{}%
+    \togglefalse{forced code block toggle}%
 }
 %    \end{macrocode}
 % \iffalse
